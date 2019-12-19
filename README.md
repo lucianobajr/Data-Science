@@ -4,7 +4,11 @@
 
 <p align="center">
   
-  ## Instalação do Anaconda
+  <img src="https://user-images.githubusercontent.com/45442173/71175438-50fc7980-2246-11ea-9296-d7913ff4258b.png">
+  
+  ## Instalação do Anaconda     
+  
+
   
         https://www.digitalocean.com/community/tutorials/how-to-install-anaconda-on-ubuntu-18-04-quickstart-pt
  </p> 
