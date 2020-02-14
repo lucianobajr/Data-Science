@@ -26,9 +26,13 @@ previsores[:, 9] = labelencoder_previsores.fit_transform(previsores[:, 9])
 previsores[:, 13] = labelencoder_previsores.fit_transform(previsores[:, 13])
 '''Transformações das variaveis categoricas para estilo 'dummy' '''
 
-onehotencoder = OneHotEncoder(categorical_features=[1, 3, 5, 6, 7, 8, 9, 13],
-                              handle_unknown='ignore')
+onehotencoder = OneHotEncoder(categorical_features=[1,3,5,6,7,8,9,13],
+                              handle_unknown='ignore',)
 
 onehotencoder = OneHotEncoder(handle_unknown='ignore')
 
-previsores = onehotencoder.fit_transform(previsores).numpy.asarray()
+previsores = onehotencoder.fit_transform(previsores).toarray()
+
+
+labelencoder_classe = LabelEncoder()
+classe = labelencoder_classe.fit_transform(classe)
