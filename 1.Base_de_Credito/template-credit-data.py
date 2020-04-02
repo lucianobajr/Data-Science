@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.impute import SimpleImputer
 
-base = pd.read_csv('credit-data.csv')
+base = pd.read_csv('../data/credit-data.csv')
 base.loc[base.age < 0, 'age'] = 40.92
                
 previsores = base.iloc[:, 1:4].values

@@ -1,0 +1,47 @@
+import pandas as pd
+import numpy as np
+base = pd.read_csv('../data/census.csv')
+'''Transformação de variáveis categóricas'''
+
+previsores = base.iloc[:, 0:14].values
+classe = base.iloc[:, 14].values
+''' Passando as variáveis categóricas nominais e ordinais para Numéricas'''
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+labelencoder_previsores = LabelEncoder()
+#labels = labelencoder_previsores.fit_transform(previsores[:, 1])
+
+previsores[:, 1] = labelencoder_previsores.fit_transform(previsores[:, 1])
+previsores[:, 3] = labelencoder_previsores.fit_transform(previsores[:, 3])
+previsores[:, 5] = labelencoder_previsores.fit_transform(previsores[:, 5])
+previsores[:, 6] = labelencoder_previsores.fit_transform(previsores[:, 6])
+previsores[:, 7] = labelencoder_previsores.fit_transform(previsores[:, 7])
+previsores[:, 8] = labelencoder_previsores.fit_transform(previsores[:, 8])
+previsores[:, 9] = labelencoder_previsores.fit_transform(previsores[:, 9])
+previsores[:, 13] = labelencoder_previsores.fit_transform(previsores[:, 13])
+'''Transformações das variaveis categoricas para estilo 'dummy' '''
+
+onehotencoder = OneHotEncoder(categorical_features=[1,3,5,6,7,8,9,13],
+                              handle_unknown='ignore',)
+
+onehotencoder = OneHotEncoder(handle_unknown='ignore')
+
+previsores = onehotencoder.fit_transform(previsores).toarray()
+
+
+labelencoder_classe = LabelEncoder()
+classe = labelencoder_classe.fit_transform(classe)
+
+from sklearn.model_selection import train_test_split
+previsores_treinamento, previsores_teste, classe_treinamento, classe_teste = train_test_split(previsores, classe, test_size=0.15, random_state=0)
+
+
+from sklearn.tree import DecisionTreeClassifier
+classificador = DecisionTreeClassifier(criterion='entropy',random_state=0)
+classificador.fit(previsores_treinamento, classe_treinamento)
+previsoes = classificador.predict(previsores_teste)
+
+from sklearn.metrics import confusion_matrix, accuracy_score
+precisao = accuracy_score(classe_teste, previsoes)
+matriz = confusion_matrix(classe_teste, previsoes)
+print("%.1f%% de precisão "%(precisao*100))

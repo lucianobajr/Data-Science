@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as numpy
 
 
-base = pd.read_csv('census.csv')
+base = pd.read_csv('../data/census.csv')
 
 previsores = base.iloc[:, 0:14].values
 classe = base.iloc[:, 14].values

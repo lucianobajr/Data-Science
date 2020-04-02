@@ -5,7 +5,7 @@ estado civil/ocupation:ocupação/relationship:relacionamento/race:raça/sex:sex
 
 import pandas as pd
 import numpy as np
-base = pd.read_csv('census.csv')
+base = pd.read_csv('../data/census.csv')
 '''Transformação de variáveis categóricas'''
 
 previsores = base.iloc[:, 0:14].values

@@ -5,7 +5,7 @@ import numpy as np
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 
-base = pd.read_csv('credit-data.csv')  # carregar a base csv
+base = pd.read_csv('../data/credit-data.csv')  # carregar a base csv
 print(base.describe(), "\n")  # ver algumas estatísticas
 '''count:quantidade
 mean:media

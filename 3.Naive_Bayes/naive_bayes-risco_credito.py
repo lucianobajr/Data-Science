@@ -1,5 +1,5 @@
 import pandas as pd
-base = pd.read_csv('original.csv')
+base = pd.read_csv('../data/risco_credito,csv')
 previsores = base.iloc[:,0:4].values
 classe = base.iloc[:,4].values
 
